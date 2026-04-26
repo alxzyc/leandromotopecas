@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leandro Moto Peças | Oficina e Peças para Motocicletas</title>
+    <meta
+      name="description"
+      content="Leandro Moto Peças em Goiânia: serviços de oficina, catálogo de peças, carrinho, orçamento e contato via WhatsApp."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header" id="inicio">
+      <div class="container header__inner">
+        <a href="#inicio" class="logo" aria-label="Leandro Moto Peças">
+          <span class="logo__mark">LM</span>
+          <span class="logo__text">
+            <strong>Leandro Moto Peças</strong>
+            <small>Oficina & Peças em Goiânia</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">☰</button>
+
+        <nav class="nav" id="mainNav">
+          <a href="#inicio">Início</a>
+          <a href="#empresa">Sobre</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#catalogo">Catálogo</a>
+          <a href="#contato">Contato</a>
+          <a href="#orcamento" class="btn btn--small">Orçamento</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero__grid">
+          <div>
+            <p class="tag">Atendimento especializado em motos populares</p>
+            <h1>Seu parceiro em manutenção e peças para motocicletas</h1>
+            <p>
+              Mais visibilidade, mais praticidade e mais vendas em um só lugar: conheça os
+              serviços da Leandro Moto Peças e encontre peças com compra online.
+            </p>
+            <div class="hero__actions">
+              <a href="#catalogo" class="btn">Ver catálogo</a>
+              <a href="https://wa.me/5562999411165" target="_blank" rel="noopener" class="btn btn--ghost"
+                >Falar no WhatsApp</a
+              >
+            </div>
+          </div>
+          <aside class="hero-card">
+            <h2>Solicite um orçamento rápido</h2>
+            <p>Envie os dados da sua moto e o serviço desejado. Retorno pelo WhatsApp.</p>
+            <a href="#orcamento" class="btn btn--full">Pedir orçamento</a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="empresa" class="section">
+        <div class="container">
+          <h2>Sobre a empresa</h2>
+          <p>
+            A Leandro Moto Peças está localizada na <strong>Av. 4ª Radial, 1385 - Quadra 12,
+            Lote 08 - Jardim das Esmeraldas, Goiânia - GO</strong> e atua com manutenção de
+            motocicletas e venda de peças e acessórios.
+          </p>
+          <div class="info-grid">
+            <article class="card">
+              <h3>Modelos atendidos</h3>
+              <ul>
+                <li>Honda CG, Honda Fan e Honda Twister</li>
+                <li>Yamaha Fazer e Yamaha XTZ</li>
+                <li>Outras motos similares</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Importante</h3>
+              <p>
+                Não realizamos manutenção completa em motos elétricas, apenas serviços
+                específicos como pequenos reparos.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Contato</h3>
+              <p>
+                <strong>Telefone/WhatsApp:</strong> (62) 9 9941-1165<br />
+                Atendimento de segunda a sábado.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" class="section section--alt">
+        <div class="container">
+          <h2>Serviços da oficina</h2>
+          <div class="services-grid">
+            <article class="service">
+              <h3>Troca de óleo</h3>
+              <p>Substituição com produtos de qualidade para maior proteção do motor.</p>
+            </article>
+            <article class="service">
+              <h3>Revisão preventiva</h3>
+              <p>Checklist completo para evitar surpresas e aumentar a segurança.</p>
+            </article>
+            <article class="service">
+              <h3>Freios e transmissão</h3>
+              <p>Ajustes, troca de pastilhas, corrente, coroa e pinhão.</p>
+            </article>
+            <article class="service">
+              <h3>Remendo e reparos rápidos</h3>
+              <p>Serviços pontuais para manter sua moto pronta para o dia a dia.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="catalogo" class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Catálogo de peças</h2>
+            <p>Selecione os itens e adicione ao carrinho para simular sua compra.</p>
+          </div>
+          <div class="catalog-grid" id="catalogGrid"></div>
+        </div>
+      </section>
+
+      <section id="carrinho" class="section section--alt">
+        <div class="container cart-layout">
+          <div>
+            <h2>Carrinho de compras</h2>
+            <div id="cartItems" class="card"></div>
+          </div>
+          <aside class="checkout card">
+            <h3>Finalização de compra</h3>
+            <p>Total: <strong id="cartTotal">R$ 0,00</strong></p>
+            <label for="payment">Forma de pagamento</label>
+            <select id="payment">
+              <option>Pix</option>
+              <option>Cartão de crédito</option>
+              <option>Cartão de débito</option>
+            </select>
+            <button id="finishOrder" class="btn btn--full">Finalizar compra</button>
+            <p class="small" id="orderMessage" aria-live="polite"></p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="acesso" class="section">
+        <div class="container auth-grid">
+          <article class="card">
+            <h2>Cadastro de cliente</h2>
+            <form id="registerForm" class="form">
+              <label>Nome <input type="text" name="nome" required /></label>
+              <label>E-mail <input type="email" name="email" required /></label>
+              <label>Senha <input type="password" name="senha" minlength="6" required /></label>
+              <button class="btn" type="submit">Criar conta</button>
+              <p class="small" id="registerMsg"></p>
+            </form>
+          </article>
+          <article class="card">
+            <h2>Login do cliente</h2>
+            <form id="loginForm" class="form">
+              <label>E-mail <input type="email" name="email" required /></label>
+              <label>Senha <input type="password" name="senha" required /></label>
+              <button class="btn" type="submit">Entrar</button>
+              <p class="small" id="loginMsg"></p>
+            </form>
+          </article>
+          <article class="card admin-box">
+            <h2>Área administrativa (simulada)</h2>
+            <p>
+              Funcionalidade destinada ao gerenciamento de produtos, alteração de preços e
+              acompanhamento de pedidos.
+            </p>
+            <ul>
+              <li>Cadastro e edição de peças</li>
+              <li>Atualização de estoque</li>
+              <li>Visualização de pedidos</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="orcamento" class="section section--alt">
+        <div class="container">
+          <h2>Solicitação de orçamento</h2>
+          <form id="quoteForm" class="form form--wide card">
+            <label>
+              Nome completo
+              <input type="text" name="nome" required />
+            </label>
+            <label>
+              WhatsApp
+              <input type="tel" name="whatsapp" required />
+            </label>
+            <label>
+              Modelo da moto
+              <input type="text" name="modelo" placeholder="Ex.: Honda Fan 160" required />
+            </label>
+            <label>
+              Serviço desejado
+              <textarea name="servico" rows="4" required></textarea>
+            </label>
+            <button type="submit" class="btn">Enviar orçamento</button>
+            <p class="small" id="quoteMsg"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contato" class="footer">
+      <div class="container footer__grid">
+        <div>
+          <h2>Leandro Moto Peças</h2>
+          <p>Av. 4ª Radial, 1385 - Jardim das Esmeraldas, Goiânia - GO</p>
+        </div>
+        <div>
+          <h3>Contato rápido</h3>
+          <p>
+            Telefone / WhatsApp: <a href="https://wa.me/5562999411165">(62) 9 9941-1165</a>
+          </p>
+        </div>
+        <div>
+          <h3>Disponibilidade</h3>
+          <p>Plataforma online disponível 24 horas por dia.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
