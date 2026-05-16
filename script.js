@@ -7,7 +7,7 @@ const products = [
     price: 39.9,
     category: 'Lubrificantes',
     image:
-      'https://images.unsplash.com/photo-1613214149922-f1809c99f4ac?auto=format&fit=crop&w=800&q=80'
+      'https://source.unsplash.com/800x600/?motorcycle,engine,oil'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const products = [
     price: 219.9,
     category: 'Transmissão',
     image:
-      'https://images.unsplash.com/photo-1558980664-10ea2f3be0dd?auto=format&fit=crop&w=800&q=80'
+      'https://source.unsplash.com/800x600/?motorcycle,chain,sprocket'
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ const products = [
     price: 54.5,
     category: 'Freios',
     image:
-      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80'
+      'https://source.unsplash.com/800x600/?motorcycle,brake,pad'
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ const products = [
     price: 69.9,
     category: 'Filtro',
     image:
-      'https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=800&q=80'
+      'https://source.unsplash.com/800x600/?motorcycle,air,filter'
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ const products = [
     price: 34.9,
     category: 'Pneus',
     image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80'
+      'https://source.unsplash.com/800x600/?motorcycle,tire,wheel'
   },
   {
     id: 6,
@@ -47,7 +47,7 @@ const products = [
     price: 48.0,
     category: 'Motor',
     image:
-      'https://images.unsplash.com/photo-1580310614769-2d6f8f17f78f?auto=format&fit=crop&w=800&q=80'
+      'https://source.unsplash.com/800x600/?motorcycle,sparkplug,garage'
   }
 ];
 
