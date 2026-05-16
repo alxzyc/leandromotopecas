@@ -7,7 +7,7 @@ const products = [
     price: 39.9,
     category: 'Lubrificantes',
     image:
-      ''
+      'https://paulinhomotos.fbitsstatic.net/img/p/oleo-mobil-4t-20w50-mineral-litro-86917/284373-2.jpg?w=1000&h=1000&v=202603111512&qs=ignore'
   },
   {
     id: 2,
