@@ -1,25 +1,75 @@
+// Lista base de produtos da loja.
+// Cada item possui uma foto para deixar o catálogo visualmente mais atrativo.
 const products = [
-  { id: 1, name: 'Óleo 4T 20W50', price: 39.9, category: 'Lubrificantes' },
-  { id: 2, name: 'Kit Relação CG/Fan', price: 219.9, category: 'Transmissão' },
-  { id: 3, name: 'Pastilha de Freio Dianteira', price: 54.5, category: 'Freios' },
-  { id: 4, name: 'Filtro de Ar Esportivo', price: 69.9, category: 'Filtro' },
-  { id: 5, name: 'Câmara de Ar Aro 18', price: 34.9, category: 'Pneus' },
-  { id: 6, name: 'Vela de Ignição Iridium', price: 48.0, category: 'Motor' }
+  {
+    id: 1,
+    name: 'Óleo 4T 20W50',
+    price: 39.9,
+    category: 'Lubrificantes',
+    image:
+      'https://source.unsplash.com/800x600/?motorcycle,engine,oil'
+  },
+  {
+    id: 2,
+    name: 'Kit Relação CG/Fan',
+    price: 219.9,
+    category: 'Transmissão',
+    image:
+      'https://source.unsplash.com/800x600/?motorcycle,chain,sprocket'
+  },
+  {
+    id: 3,
+    name: 'Pastilha de Freio Dianteira',
+    price: 54.5,
+    category: 'Freios',
+    image:
+      'https://source.unsplash.com/800x600/?motorcycle,brake,pad'
+  },
+  {
+    id: 4,
+    name: 'Filtro de Ar Esportivo',
+    price: 69.9,
+    category: 'Filtro',
+    image:
+      'https://source.unsplash.com/800x600/?motorcycle,air,filter'
+  },
+  {
+    id: 5,
+    name: 'Câmara de Ar Aro 18',
+    price: 34.9,
+    category: 'Pneus',
+    image:
+      'https://source.unsplash.com/800x600/?motorcycle,tire,wheel'
+  },
+  {
+    id: 6,
+    name: 'Vela de Ignição Iridium',
+    price: 48.0,
+    category: 'Motor',
+    image:
+      'https://source.unsplash.com/800x600/?motorcycle,sparkplug,garage'
+  }
 ];
 
+// Estado global simples da aplicação.
+// Mantemos apenas o carrinho para preservar as funções já existentes.
 const state = {
   cart: []
 };
 
+// Formata preços para real brasileiro.
 const money = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
+// Renderiza todos os produtos na vitrine (catálogo).
 function renderCatalog() {
   const catalog = document.getElementById('catalogGrid');
+
   catalog.innerHTML = products
     .map(
       (product) => `
-      <article class="product-card">
-        <small>${product.category}</small>
+      <article class="product-card reveal">
+        <img src="${product.image}" alt="${product.name}" class="product-card__image" loading="lazy" />
+        <small class="product-card__category">${product.category}</small>
         <h3>${product.name}</h3>
         <span class="price">${money.format(product.price)}</span>
         <button class="btn" data-add="${product.id}">Adicionar ao carrinho</button>
@@ -29,6 +79,7 @@ function renderCatalog() {
     .join('');
 }
 
+// Renderiza carrinho e atualiza total.
 function renderCart() {
   const cartItems = document.getElementById('cartItems');
   const total = state.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
@@ -54,6 +105,7 @@ function renderCart() {
   document.getElementById('cartTotal').textContent = money.format(total);
 }
 
+// Adiciona item ao carrinho (ou incrementa quantidade se já existir).
 function addToCart(productId) {
   const found = products.find((product) => product.id === Number(productId));
   if (!found) return;
@@ -68,11 +120,32 @@ function addToCart(productId) {
   renderCart();
 }
 
+// Remove item do carrinho com base no id.
 function removeFromCart(productId) {
   state.cart = state.cart.filter((item) => item.id !== Number(productId));
   renderCart();
 }
 
+// Adiciona animação suave nos elementos ao entrarem na tela.
+function setupScrollReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal--visible');
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.card, .service, .hero-card, .section-head, .product-card').forEach((element) => {
+    element.classList.add('reveal');
+    observer.observe(element);
+  });
+}
+
+// Registra todos os eventos de clique e envio de formulário.
 function registerEvents() {
   document.addEventListener('click', (event) => {
     const addId = event.target.getAttribute('data-add');
@@ -122,6 +195,8 @@ function registerEvents() {
   });
 }
 
+// Inicialização da aplicação.
 renderCatalog();
 renderCart();
 registerEvents();
+setupScrollReveal();
