@@ -1,75 +1,32 @@
-// Lista base de produtos da loja.
-// Cada item possui uma foto para deixar o catálogo visualmente mais atrativo.
+// Lista fixa de produtos exibidos no catalogo.
 const products = [
-  {
-    id: 1,
-    name: 'Óleo 4T 20W50',
-    price: 39.9,
-    category: 'Lubrificantes',
-    image:
-      'https://paulinhomotos.fbitsstatic.net/img/p/oleo-mobil-4t-20w50-mineral-litro-86917/284373-2.jpg?w=1000&h=1000&v=202603111512&qs=ignore'
-  },
-  {
-    id: 2,
-    name: 'Kit Relação CG/Fan',
-    price: 219.9,
-    category: 'Transmissão',
-    image:
-      ''
-  },
-  {
-    id: 3,
-    name: 'Pastilha de Freio Dianteira',
-    price: 54.5,
-    category: 'Freios',
-    image:
-      ''
-  },
-  {
-    id: 4,
-    name: 'Filtro de Ar Esportivo',
-    price: 69.9,
-    category: 'Filtro',
-    image:
-      ''
-  },
-  {
-    id: 5,
-    name: 'Câmara de Ar Aro 18',
-    price: 34.9,
-    category: 'Pneus',
-    image:
-      ''
-  },
-  {
-    id: 6,
-    name: 'Vela de Ignição Iridium',
-    price: 48.0,
-    category: 'Motor',
-    image:
-      ''
-  }
+  { id: 1, name: 'Óleo 4T 20W50', price: 39.9, category: 'Lubrificantes' },
+  { id: 2, name: 'Kit Relação CG/Fan', price: 219.9, category: 'Transmissão' },
+  { id: 3, name: 'Pastilha de Freio Dianteira', price: 54.5, category: 'Freios' },
+  { id: 4, name: 'Filtro de Ar Esportivo', price: 69.9, category: 'Filtro' },
+  { id: 5, name: 'Câmara de Ar Aro 18', price: 34.9, category: 'Pneus' },
+  { id: 6, name: 'Vela de Ignição Iridium', price: 48.0, category: 'Motor' }
 ];
 
-// Estado global simples da aplicação.
-// Mantemos apenas o carrinho para preservar as funções já existentes.
+// Guarda os dados que mudam durante o uso do site.
 const state = {
+  // Carrinho com os produtos escolhidos pelo usuario.
   cart: []
 };
 
-// Formata preços para real brasileiro.
+// Formatador para mostrar os precos no padrao brasileiro.
 const money = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
-// Renderiza todos os produtos na vitrine (catálogo).
+// Monta os cards de produtos no HTML usando a lista products.
 function renderCatalog() {
   const catalog = document.getElementById('catalogGrid');
 
+  // Para cada produto, cria um bloco HTML com categoria, nome, preco e botao.
   catalog.innerHTML = products
     .map(
       (product) => `
-      <article class="product-card reveal">
-        <img src="${product.image}" alt="${product.name}" class="product-card__image" loading="lazy" />
-        <small class="product-card__category">${product.category}</small>
+      <article class="product-card">
+        <small>${product.category}</small>
         <h3>${product.name}</h3>
         <span class="price">${money.format(product.price)}</span>
         <button class="btn" data-add="${product.id}">Adicionar ao carrinho</button>
@@ -79,14 +36,18 @@ function renderCatalog() {
     .join('');
 }
 
-// Renderiza carrinho e atualiza total.
+// Atualiza a visualizacao do carrinho e recalcula o total.
 function renderCart() {
   const cartItems = document.getElementById('cartItems');
+
+  // Soma preco x quantidade de cada item para chegar ao valor final.
   const total = state.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
+  // Se nao houver produtos, mostra uma mensagem de carrinho vazio.
   if (!state.cart.length) {
     cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
   } else {
+    // Se houver produtos, cria uma linha para cada item do carrinho.
     cartItems.innerHTML = state.cart
       .map(
         (item) => `
@@ -102,51 +63,39 @@ function renderCart() {
       .join('');
   }
 
+  // Atualiza o texto do total na tela.
   document.getElementById('cartTotal').textContent = money.format(total);
 }
 
-// Adiciona item ao carrinho (ou incrementa quantidade se já existir).
+// Adiciona um produto ao carrinho a partir do id recebido.
 function addToCart(productId) {
+  // Procura o produto na lista principal.
   const found = products.find((product) => product.id === Number(productId));
   if (!found) return;
 
+  // Verifica se o produto ja existe no carrinho.
   const existing = state.cart.find((item) => item.id === found.id);
   if (existing) {
+    // Se ja existir, aumenta apenas a quantidade.
     existing.qty += 1;
   } else {
+    // Se ainda nao existir, adiciona o produto com quantidade inicial 1.
     state.cart.push({ ...found, qty: 1 });
   }
 
+  // Recarrega a visualizacao do carrinho depois da mudanca.
   renderCart();
 }
 
-// Remove item do carrinho com base no id.
+// Remove totalmente um produto do carrinho pelo id.
 function removeFromCart(productId) {
   state.cart = state.cart.filter((item) => item.id !== Number(productId));
   renderCart();
 }
 
-// Adiciona animação suave nos elementos ao entrarem na tela.
-function setupScrollReveal() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal--visible');
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  document.querySelectorAll('.card, .service, .hero-card, .section-head, .product-card').forEach((element) => {
-    element.classList.add('reveal');
-    observer.observe(element);
-  });
-}
-
-// Registra todos os eventos de clique e envio de formulário.
+// Registra todos os eventos de clique e envio dos formularios.
 function registerEvents() {
+  // Captura cliques em botoes de adicionar/remover usando os atributos data-add e data-remove.
   document.addEventListener('click', (event) => {
     const addId = event.target.getAttribute('data-add');
     const removeId = event.target.getAttribute('data-remove');
@@ -155,20 +104,24 @@ function registerEvents() {
     if (removeId) removeFromCart(removeId);
   });
 
+  // Simula a finalizacao do pedido.
   document.getElementById('finishOrder').addEventListener('click', () => {
     const payment = document.getElementById('payment').value;
     const message = document.getElementById('orderMessage');
 
+    // Impede finalizar se o carrinho estiver vazio.
     if (!state.cart.length) {
       message.textContent = 'Adicione produtos ao carrinho antes de finalizar.';
       return;
     }
 
+    // Mostra mensagem de sucesso, limpa o carrinho e atualiza a tela.
     message.textContent = `Pedido recebido com pagamento em ${payment}. Em breve entraremos em contato!`;
     state.cart = [];
     renderCart();
   });
 
+  // Simula o cadastro de cliente e limpa o formulario.
   document.getElementById('registerForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -176,6 +129,7 @@ function registerEvents() {
     event.currentTarget.reset();
   });
 
+  // Simula o login de cliente e limpa o formulario.
   document.getElementById('loginForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -183,6 +137,7 @@ function registerEvents() {
     event.currentTarget.reset();
   });
 
+  // Simula o envio de uma solicitacao de orcamento e limpa o formulario.
   document.getElementById('quoteForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -190,13 +145,13 @@ function registerEvents() {
     event.currentTarget.reset();
   });
 
+  // Abre ou fecha o menu em telas pequenas.
   document.getElementById('menuToggle').addEventListener('click', () => {
     document.getElementById('mainNav').classList.toggle('nav--open');
   });
 }
 
-// Inicialização da aplicação.
+// Inicializa a pagina: cria catalogo, mostra carrinho vazio e liga os eventos.
 renderCatalog();
 renderCart();
 registerEvents();
-setupScrollReveal();
