@@ -1,18 +1,13 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <!-- Configurações base de codificação e responsividade -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO focado no nicho de moto peças -->
     <title>Leandro Moto Peças | Oficina e Peças para Motocicletas</title>
     <meta
       name="description"
-      content="Leandro Moto Peças em Goiânia: serviços de oficina para motos, catálogo de moto peças, carrinho, orçamento e contato via WhatsApp."
+      content="Leandro Moto Peças em Goiânia: serviços de oficina, catálogo de peças, carrinho, orçamento e contato via WhatsApp."
     />
-
-    <!-- Tipografia e arquivo principal de estilos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,20 +17,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Cabeçalho fixo com navegação rápida entre seções -->
+    <!-- Cabecalho fixo com logo, botao de menu mobile e links de navegacao. -->
     <header class="header" id="inicio">
       <div class="container header__inner">
+        <!-- Logo clicavel que leva o usuario de volta ao inicio da pagina. -->
         <a href="#inicio" class="logo" aria-label="Leandro Moto Peças">
           <span class="logo__mark">LM</span>
           <span class="logo__text">
             <strong>Leandro Moto Peças</strong>
-            <small>Oficina & Moto Peças em Goiânia</small>
+            <small>Oficina & Peças em Goiânia</small>
           </span>
         </a>
 
-        <!-- Botão do menu mobile -->
+        <!-- Botao exibido em telas pequenas para abrir e fechar o menu. -->
         <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">☰</button>
 
+        <!-- Menu principal com atalhos para as seções da pagina. -->
         <nav class="nav" id="mainNav">
           <a href="#inicio">Início</a>
           <a href="#empresa">Sobre</a>
@@ -48,15 +45,15 @@
     </header>
 
     <main>
-      <!-- Hero principal com proposta de valor exclusivamente para motocicletas -->
+      <!-- Secao inicial com chamada principal e botoes de acao. -->
       <section class="hero">
         <div class="container hero__grid">
           <div>
-            <p class="tag">Especialistas em peças e manutenção para motos</p>
-            <h1>Seu parceiro em manutenção e moto peças para motocicletas</h1>
+            <p class="tag">Atendimento especializado em motos populares</p>
+            <h1>Seu parceiro em manutenção e peças para motocicletas</h1>
             <p>
-              Mais praticidade para o motociclista: conheça os serviços da Leandro Moto Peças,
-              encontre componentes para sua moto e faça pedidos online com rapidez.
+              Mais visibilidade, mais praticidade e mais vendas em um só lugar: conheça os
+              serviços da Leandro Moto Peças e encontre peças com compra online.
             </p>
             <div class="hero__actions">
               <a href="#catalogo" class="btn">Ver catálogo</a>
@@ -65,8 +62,7 @@
               >
             </div>
           </div>
-
-          <!-- Card de conversão para orçamento -->
+          <!-- Card lateral que destaca o pedido de orcamento. -->
           <aside class="hero-card">
             <h2>Solicite um orçamento rápido</h2>
             <p>Envie os dados da sua moto e o serviço desejado. Retorno pelo WhatsApp.</p>
@@ -75,14 +71,14 @@
         </div>
       </section>
 
-      <!-- Apresentação institucional da empresa -->
+      <!-- Informacoes institucionais da empresa. -->
       <section id="empresa" class="section">
         <div class="container">
           <h2>Sobre a empresa</h2>
           <p>
             A Leandro Moto Peças está localizada na <strong>Av. 4ª Radial, 1385 - Quadra 12,
             Lote 08 - Jardim das Esmeraldas, Goiânia - GO</strong> e atua com manutenção de
-            motocicletas e venda de peças e acessórios para motos.
+            motocicletas e venda de peças e acessórios.
           </p>
           <div class="info-grid">
             <article class="card">
@@ -111,18 +107,18 @@
         </div>
       </section>
 
-      <!-- Serviços típicos da oficina de motocicletas -->
+      <!-- Lista dos principais servicos oferecidos pela oficina. -->
       <section id="servicos" class="section section--alt">
         <div class="container">
           <h2>Serviços da oficina</h2>
           <div class="services-grid">
             <article class="service">
               <h3>Troca de óleo</h3>
-              <p>Substituição com produtos de qualidade para maior proteção do motor da moto.</p>
+              <p>Substituição com produtos de qualidade para maior proteção do motor.</p>
             </article>
             <article class="service">
               <h3>Revisão preventiva</h3>
-              <p>Checklist completo para evitar surpresas e aumentar a segurança do piloto.</p>
+              <p>Checklist completo para evitar surpresas e aumentar a segurança.</p>
             </article>
             <article class="service">
               <h3>Freios e transmissão</h3>
@@ -136,22 +132,24 @@
         </div>
       </section>
 
-      <!-- Catálogo dinâmico: cards são preenchidos via JavaScript -->
+      <!-- Catalogo de produtos; os cards sao criados pelo arquivo script.js. -->
       <section id="catalogo" class="section">
         <div class="container">
           <div class="section-head">
-            <h2>Catálogo de moto peças</h2>
+            <h2>Catálogo de peças</h2>
             <p>Selecione os itens e adicione ao carrinho para simular sua compra.</p>
           </div>
+          <!-- Area vazia preenchida dinamicamente com os produtos cadastrados no JavaScript. -->
           <div class="catalog-grid" id="catalogGrid"></div>
         </div>
       </section>
 
-      <!-- Carrinho e checkout simplificado -->
+      <!-- Carrinho com itens selecionados, total e simulacao de finalizacao. -->
       <section id="carrinho" class="section section--alt">
         <div class="container cart-layout">
           <div>
             <h2>Carrinho de compras</h2>
+            <!-- Area preenchida pelo JavaScript com os produtos adicionados ao carrinho. -->
             <div id="cartItems" class="card"></div>
           </div>
           <aside class="checkout card">
@@ -169,15 +167,16 @@
         </div>
       </section>
 
-      <!-- Área de acesso com formulários simulados -->
+      <!-- Area com formularios simulados de cadastro, login e administracao. -->
       <section id="acesso" class="section">
         <div class="container auth-grid">
           <article class="card">
             <h2>Cadastro de cliente</h2>
+            <p class="descricao-form">Preencha seus dados para criar sua conta.</p>
             <form id="registerForm" class="form">
-              <label>Nome <input type="text" name="nome" required /></label>
-              <label>E-mail <input type="email" name="email" required /></label>
-              <label>Senha <input type="password" name="senha" minlength="6" required /></label>
+              <label>Nome <input type="text" name="nome" placeholder="Digite seu nome completo" required /></label>
+              <label>E-mail <input type="email" name="email" placeholder="exemplo@email.com" required /></label>
+              <label>Senha <input type="password" name="senha" placeholder="Mín. 6 caracteres" minlength="6" required /></label>
               <button class="btn" type="submit">Criar conta</button>
               <p class="small" id="registerMsg"></p>
             </form>
@@ -185,8 +184,8 @@
           <article class="card">
             <h2>Login do cliente</h2>
             <form id="loginForm" class="form">
-              <label>E-mail <input type="email" name="email" required /></label>
-              <label>Senha <input type="password" name="senha" required /></label>
+              <label>E-mail <input type="email" name="email" placeholder="Digite seu e-mail" required /></label>
+              <label>Senha <input type="password" name="senha" placeholder="Digite sua senha" required /></label>
               <button class="btn" type="submit">Entrar</button>
               <p class="small" id="loginMsg"></p>
             </form>
@@ -194,7 +193,7 @@
           <article class="card admin-box">
             <h2>Área administrativa (simulada)</h2>
             <p>
-              Funcionalidade destinada ao gerenciamento de moto peças, alteração de preços e
+              Funcionalidade destinada ao gerenciamento de produtos, alteração de preços e
               acompanhamento de pedidos.
             </p>
             <ul>
@@ -206,7 +205,7 @@
         </div>
       </section>
 
-      <!-- Formulário de orçamento para serviços em motos -->
+      <!-- Formulario usado para solicitar orcamento de servico pelo site. -->
       <section id="orcamento" class="section section--alt">
         <div class="container">
           <h2>Solicitação de orçamento</h2>
@@ -234,7 +233,7 @@
       </section>
     </main>
 
-    <!-- Rodapé com dados principais de contato -->
+    <!-- Rodape com endereco, contato e disponibilidade da plataforma. -->
     <footer id="contato" class="footer">
       <div class="container footer__grid">
         <div>
@@ -254,7 +253,7 @@
       </div>
     </footer>
 
-    <!-- Script com lógica do catálogo, carrinho e formulários -->
+    <!-- Carrega a logica do catalogo, carrinho, formularios e menu mobile. -->
     <script src="script.js"></script>
   </body>
 </html>
